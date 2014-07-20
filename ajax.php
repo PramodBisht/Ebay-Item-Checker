@@ -1,9 +1,9 @@
 <?php
 	//error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
 
-	//header("Content-type:text/xml");
+	header("Content-type:text/xml");
 	$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
-	$version = '1.0.0';  // API version supported by your application
+	$version = '1.11.0';  // API version supported by your application
 	$appid = 'student93-fb81-4fa5-ba17-7e8eef23bd1';  // Replace with your own AppID
 	$globalid = 'EBAY-IN';  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
 	$query = $_GET['keyword']; // You may want to supply your own query
@@ -61,52 +61,25 @@
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=30";
 	$apicall .= "$urlfilter";
-	
 	$resp = simplexml_load_file($apicall);
-	//echo $resp;
    	$xml="<?xml version=\"1.0\" ?>";
    	$xml.="<product>";
-	// Check to see if the request was successful, else print an error
 	if ($resp->ack == "Success") {
 	  $results = '';
-	  // If the response was loaded, parse it and build links
 	  foreach($resp->searchResult->item as $item) {
-
 	    $pic   = $item->galleryURL;
+	    $pic=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $pic);
 	    $link  = $item->viewItemURL;
+	    $link=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $link);
 	    $title = $item->title;
-	    $itemid= $item->itemId;
-	    $categoryName= $item->primaryCategory->categoryName;
-	    $price=$item->sellingStatus->currentPrice;
 
-
-	    /*addding item to xml feed to be used by index.php*/
-	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic>
-	     <itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
-
-	     
-	    // For each SearchResultItem node, build a link and append it to $results
-	    $results .= "<tr><td><img src=\"$pic\"></td><td><a href=\"$link\">$title</a></td>
-	    <tr><td>item id is $itemid</td></tr><tr><td>category name is $categoryName</td></tr><tr><td>price is $price</td></tr>";
-	    
+	    $title=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $title);
+	    $itemid= preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->itemId);
+	    $categoryName=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->primaryCategory->categoryName); 
+	    $price=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->sellingStatus->currentPrice);
+	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic><itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
 	  }
 	  $xml.="</product>";
 	}
-	//echo "$xml";
-
+	echo $xml;
 ?>
-
-<html>
-<head>
-
-	</head>
-<body>
-<table>
-<tr>
-  <td>
-    <?php echo $results;?>
-  </td>
-</tr>
-</table>
-</body>
-</html>	
