@@ -8,6 +8,7 @@
 	$globalid = 'EBAY-IN';  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
 	$query = $_GET['keyword']; // You may want to supply your own query
 	$sorttype=$_GET['type'];
+	$categorytype=$_GET['categorytype'];
 	
 	$safequery = urlencode($query);  // Make the query URL-friendly
 	//echo $safequery;
@@ -66,6 +67,7 @@
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=30";
 	$apicall .= "&sortOrder=$sorttype";
+	$apicall .= "&CategoryID=$categorytype";
 	$apicall .= "$urlfilter";
 
 	$resp = simplexml_load_file($apicall);
