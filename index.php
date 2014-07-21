@@ -55,9 +55,13 @@ var results="";
 <h3>if no category is selected it will show you the best match</h3>
 <div>
 	<div >
-		<input type="text" value="die hard" id="key"></input>
+		<input type="text" value="Asus" id="key"></input>
 		<select id="cat">
+			<option value="0">All Category</option>
 			<option value="16159">Laptop</option>
+			<option value="14295">Laptop Batteries</option>
+			<option value="176299">Video &amp; Computer Games</option>
+
 			</select>
 		<select id="sorting"> 
 			<option value="BestMatch">Select Sort Order</option>

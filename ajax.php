@@ -86,7 +86,7 @@
 	    $itemid= preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->itemId);
 	    $categoryName=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->primaryCategory->categoryName); 
 	    $price=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->sellingStatus->currentPrice);
-	    if($_GET['categorytype']==$item->primaryCategory->categoryId){
+	    if($_GET['categorytype']==$item->primaryCategory->categoryId||$_GET['categorytype']=="0"){
 	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic><itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
 	  	}
 	  }
