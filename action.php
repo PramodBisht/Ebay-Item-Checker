@@ -61,7 +61,7 @@
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=30";
 	$apicall .= "$urlfilter";
-	
+	echo $apicall;
 	$resp = simplexml_load_file($apicall);
 	//echo $resp;
    	$xml="<?xml version=\"1.0\" ?>";
@@ -76,18 +76,20 @@
 	    $link  = $item->viewItemURL;
 	    $title = $item->title;
 	    $itemid= $item->itemId;
+	    $ucategoryid=$item->primaryCategory->categoryId;
 	    $categoryName= $item->primaryCategory->categoryName;
 	    $price=$item->sellingStatus->currentPrice;
 
 
 	    /*addding item to xml feed to be used by index.php*/
 	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic>
-	     <itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
+	     <itemid>$itemid</itemid><categoryid>$ucategoryid</categoryid><categoryname>$categoryName</categoryname><price>$price</price></item>";
 
 	     
 	    // For each SearchResultItem node, build a link and append it to $results
 	    $results .= "<tr><td><img src=\"$pic\"></td><td><a href=\"$link\">$title</a></td>
-	    <tr><td>item id is $itemid</td></tr><tr><td>category name is $categoryName</td></tr><tr><td>price is $price</td></tr>";
+	    <tr><td>item id is $itemid</td></tr><tr><td>category name is $categoryName</td></tr><tr>
+	    <td>category id $ucategoryid</td></tr><tr><td>price is $price</td></tr>";
 	    
 	  }
 	  $xml.="</product>";

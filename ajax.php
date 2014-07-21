@@ -67,7 +67,7 @@
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=30";
 	$apicall .= "&sortOrder=$sorttype";
-	$apicall .= "&CategoryID=$categorytype";
+	$apicall .= "&CategoryParentID=$categorytype";
 	$apicall .= "$urlfilter";
 
 	$resp = simplexml_load_file($apicall);

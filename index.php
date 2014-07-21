@@ -20,6 +20,7 @@ var results="";
 			url: 'ajax.php',
 			data:{keyword:itemtosearch,type:sorttype,categorytype:itemcategory},
 			success: function(data) {
+				console.log(data);
 				$(data).find('item').each(function(){
 					var title=($(this).find('title').text());
 					var link=($(this).find('link').text());
@@ -33,7 +34,7 @@ var results="";
 
 
 				});
-				console.log(results);
+				
 				$("#tab").html(results);
 				
 			},
