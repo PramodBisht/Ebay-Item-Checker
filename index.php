@@ -57,10 +57,8 @@ var results="";
 	<div >
 		<input type="text" value="die hard" id="key"></input>
 		<select id="cat">
-			<option selected="selected" value="0">All Categories </option>
-			<option value="178777">Baby &amp; Mom</option>
-<option value="267">Books &amp; Magazines</option><option value="625">Cameras &amp; Optics</option><option value="131090">Cars &amp; Bike Accessories</option><option value="116365">Charity</option><option value="11450">Clothing &amp; Accessories</option><option value="11116">Coins &amp; Notes</option><option value="1">Collectibles</option><option value="178743">eBay Daily</option><option value="13361">Fitness &amp; Sports</option><option value="26395">Fragrances, Beauty &amp; Health</option><option value="1249">Games, Consoles &amp; Accessories</option><option value="11700">Home &amp; Living</option><option value="20710">Home Appliances</option><option value="281">Jewellery &amp; Precious Coins</option><option value="178816">Kitchen &amp; Dining</option><option value="160">Laptops &amp; Computer Peripherals</option><option value="11071">LCD, LED &amp; Televisions</option><option value="162260">Memory Cards, Pen Drives &amp; HDD</option><option value="14416">Mobile Accessories</option><option value="15032">Mobile Phones</option><option value="9800">Motor Classifieds</option><option value="11232">Movies &amp; Music</option><option value="619">Musical Instruments</option><option value="174982">Shoes</option><option value="169977">Stamps</option><option value="92470">Stationery &amp; Office Supplies</option><option value="178741">Tablets &amp; Accessories</option><option value="631">Tools &amp; Hardware</option><option value="220">Toys, Games &amp; School Supplies</option><option value="179545">Warranty Services</option><option value="14324">Watches</option><option value="99">Everything Else</option>
-		</select>
+			<option value="16159">Laptop</option>
+			</select>
 		<select id="sorting"> 
 			<option value="BestMatch">Select Sort Order</option>
 			<option value="BestMatch">Best Match</option>

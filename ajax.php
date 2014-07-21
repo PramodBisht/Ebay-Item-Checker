@@ -67,7 +67,7 @@
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=30";
 	$apicall .= "&sortOrder=$sorttype";
-	$apicall .= "&CategoryParentID=$categorytype";
+	//$apicall .= "&CategoryParentID=$categorytype";
 	$apicall .= "$urlfilter";
 
 	$resp = simplexml_load_file($apicall);
@@ -86,7 +86,9 @@
 	    $itemid= preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->itemId);
 	    $categoryName=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->primaryCategory->categoryName); 
 	    $price=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->sellingStatus->currentPrice);
+	    if($_GET['categorytype']==$item->primaryCategory->categoryId){
 	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic><itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
+	  	}
 	  }
 	  $xml.="</product>";
 	}
