@@ -7,7 +7,10 @@
 	$appid = 'student93-fb81-4fa5-ba17-7e8eef23bd1';  // Replace with your own AppID
 	$globalid = 'EBAY-IN';  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
 	$query = $_GET['keyword']; // You may want to supply your own query
+	$sorttype=$_GET['type'];
+	
 	$safequery = urlencode($query);  // Make the query URL-friendly
+	//echo $safequery;
 	$i = '0'; 
 	$filterarray =
 	  array(
@@ -26,6 +29,8 @@
 	    'value' => array('AuctionWithBIN','FixedPrice'),
 	    'paramName' => '',
 	    'paramValue' => ''),
+	   
+	    	
 	  );
 	  function buildURLArray ($filterarray) {
 		  global $urlfilter;
@@ -60,7 +65,9 @@
 	$apicall .= "&GLOBAL-ID=$globalid";
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=30";
+	$apicall .= "&sortOrder=$sorttype";
 	$apicall .= "$urlfilter";
+
 	$resp = simplexml_load_file($apicall);
    	$xml="<?xml version=\"1.0\" ?>";
    	$xml.="<product>";
@@ -80,6 +87,9 @@
 	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic><itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
 	  }
 	  $xml.="</product>";
+	}
+	else{
+		echo "<script>console.log('ajax.php fetch nothing')</script>";
 	}
 	echo $xml;
 ?>

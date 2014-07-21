@@ -2,20 +2,22 @@
 <html>
 <head>
 <style type="text/css">body { font-family: arial,sans-serif;} </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
 var results="";
 	$(document).ready(function(){
 		$("#submit").click(function(){
 			results="";
 	   		var itemtosearch=$("#key").val();
+	   		var sorttype=$("#sorting").val();
+	   		
 	   		
 	   		$("#tab").empty();
            $.ajax({
 			type: 'GET',
 			dataType: 'xml',
 			url: 'ajax.php',
-			data:{keyword:itemtosearch},
+			data:{keyword:itemtosearch,type:sorttype},
 			success: function(data) {
 				$(data).find('item').each(function(){
 					var title=($(this).find('title').text());
@@ -47,7 +49,8 @@ var results="";
 </head>
 <body>
 
-<h3>Search within a ebay</h3>
+<h3>Search within a ebay </h3>
+<h3>if no category is selected it will show you the best match</h3>
 <div>
 	<div >
 		<input type="text" value="die hard" id="key"></input>
@@ -56,10 +59,11 @@ var results="";
 			<option>All Category</option>
 			<option>Books & Magazine</option>
 		</select>
-		<select>
-			<option>Select Sort Order</option>
-			<option>Price:Lowest to highest</option>
-			<option>Price:Higest First</option>
+		<select id="sorting"> 
+			<option value="BestMatch">Select Sort Order</option>
+			<option value="BestMatch">Best Match</option>
+			<option value="PricePlusShippingLowest">Price:Lowest to highest</option>
+			<option value="CurrentPriceHighest">Price:Higest First</option>
 		</select>
 		<button id="submit">submit</button>
 	</div>
