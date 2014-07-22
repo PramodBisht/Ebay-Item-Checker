@@ -67,10 +67,8 @@
 	$apicall .= "&keywords=$safequery";
 	$apicall .= "&paginationInput.entriesPerPage=20";
 	$apicall .= "&sortOrder=$sorttype";
-
-//	$apicall .= "&sortOrder=$sorttype";
 	
-	//$apicall .= "$urlfilter";
+	$apicall .= "$urlfilter";
 
 	$resp = simplexml_load_file($apicall);
 	//echo $resp;
@@ -95,8 +93,6 @@
 	  }
 	  $xml.="</product>";
 	}
-	else{
-		echo "<script>console.log('ajax.php fetch nothing')</script>";
-	}
+
 	echo $xml;
 ?>

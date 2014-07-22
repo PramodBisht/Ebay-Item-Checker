@@ -65,6 +65,7 @@ var results="";
 		<select id="cat">
 			<option value="0">All Category</option>
 			<option value="14295">Laptop Batteries</option>
+			<option value="16159">Laptop</option>
 
 			</select>
 		<select id="sorting"> 
