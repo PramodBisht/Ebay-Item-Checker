@@ -11,13 +11,19 @@ var results="";
 	   		var itemtosearch=$("#key").val();
 	   		var sorttype=$("#sorting").val();
 	   		var itemcategory=$("#cat").val();
-	   		
-	   		
+	   		var newurl;
+	   		if(itemcategory==0){
+	   			newurl='ajax.php';
+	   		}else{
+	   			newurl='ajax2.php';
+	   			itemtosearch+=" "+$("#cat").find(":selected").text();;
+	   			//alert(itemtosearch);
+	   		}
 	   		$("#tab").empty();
            $.ajax({
 			type: 'GET',
 			dataType: 'xml',
-			url: 'ajax.php',
+			url: newurl,
 			data:{keyword:itemtosearch,type:sorttype,categorytype:itemcategory},
 			success: function(data) {
 				console.log(data);
@@ -55,12 +61,10 @@ var results="";
 <h3>if no category is selected it will show you the best match</h3>
 <div>
 	<div >
-		<input type="text" value="Asus" id="key"></input>
+		<input type="text" value="hp" id="key"></input>
 		<select id="cat">
 			<option value="0">All Category</option>
-			<option value="16159">Laptop</option>
 			<option value="14295">Laptop Batteries</option>
-			<option value="176299">Video &amp; Computer Games</option>
 
 			</select>
 		<select id="sorting"> 

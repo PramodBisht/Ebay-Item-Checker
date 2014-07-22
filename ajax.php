@@ -8,7 +8,7 @@
 	$globalid = 'EBAY-IN';  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
 	$query = $_GET['keyword']; // You may want to supply your own query
 	$sorttype=$_GET['type'];
-	$categorytype=$_GET['categorytype'];
+	$category=$_GET['categorytype'];
 	
 	$safequery = urlencode($query);  // Make the query URL-friendly
 	//echo $safequery;
@@ -65,9 +65,9 @@
 	$apicall .= "&SECURITY-APPNAME=$appid";
 	$apicall .= "&GLOBAL-ID=$globalid";
 	$apicall .= "&keywords=$safequery";
-	$apicall .= "&paginationInput.entriesPerPage=30";
+	$apicall .= "&paginationInput.entriesPerPage=20";
 	$apicall .= "&sortOrder=$sorttype";
-	//$apicall .= "&CategoryParentID=$categorytype";
+	$apicall .= "&categoryId=$category";
 	$apicall .= "$urlfilter";
 
 	$resp = simplexml_load_file($apicall);
@@ -86,7 +86,8 @@
 	    $itemid= preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->itemId);
 	    $categoryName=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->primaryCategory->categoryName); 
 	    $price=preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $item->sellingStatus->currentPrice);
-	    if($_GET['categorytype']==$item->primaryCategory->categoryId||$_GET['categorytype']=="0"){
+	    //if($_GET['categorytype']==$item->primaryCategory->categoryId||$_GET['categorytype']=="0")
+	    {
 	    $xml.="<item><title>$title</title><link>$link</link><pic>$pic</pic><itemid>$itemid</itemid><categoryname>$categoryName</categoryname><price>$price</price></item>";
 	  	}
 	  }
