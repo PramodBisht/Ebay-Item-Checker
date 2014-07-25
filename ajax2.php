@@ -1,5 +1,5 @@
 <?php
-	//error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
+	error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
 
 	header("Content-type:text/xml");
 	$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
@@ -9,6 +9,7 @@
 	$query = $_GET['keyword']; // You may want to supply your own query
 	$sorttype=$_GET['type'];
 	$category=$_GET['categorytype'];
+    $globalid = 'EBAY-IN';
 	$safequery = urlencode($query);  // Make the query URL-friendly
 	//echo $safequery;
 	$i = '0'; 
@@ -61,6 +62,7 @@
 	$apicall = "$endpoint?";
 	$apicall .= "OPERATION-NAME=findItemsAdvanced";
 	$apicall .= "&SERVICE-VERSION=$version";
+	$apicall .= "&GLOBAL-ID=$globalid";
 	$apicall .= "&SECURITY-APPNAME=$appid";
 	$apicall .= "&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD";
 	$apicall .= "&categoryId=$category";
