@@ -67,7 +67,7 @@
 	$apicall .= "&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD";
 	$apicall .= "&categoryId=$category";
 	$apicall .= "&keywords=$safequery";
-	$apicall .= "&paginationInput.entriesPerPage=20";
+	$apicall .= "&paginationInput.entriesPerPage=40";
 	$apicall .= "&sortOrder=$sorttype";
 	
 	$apicall .= "$urlfilter";
