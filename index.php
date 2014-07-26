@@ -34,21 +34,14 @@ var results="";
 					var Categoryname=($(this).find('categoryname').text());
 					var price=($(this).find('price').text());
 					results += "<tr><td><img src="+pic+"></td><td><a href="+link+">"+title+"</a></td><tr><td>item id is "+item_id+"</td></tr><tr><td>category name is "+Categoryname+"</td></tr><tr><td>price is "+price+"</td></tr>";
-
-
-
-				});
-				
+				});			
 				$("#tab").html(results);
-				
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 		        console.log(xhr.status);
 		        console.log(thrownError);
 		    } 
 		   });
-	   		
-
 	   });
 	});
 </script>
@@ -56,12 +49,10 @@ var results="";
 <body>
 
 <h3>Search within a ebay </h3>
-<h3>if no category is selected it will show you the best match</h3>
 <div>
 	<div >
 		<input type="text" value="hp" id="key"></input>
 		<select id="cat">
-		
 			<option value="293">Audio &amp; Home Entertainment</option>
 			<option value="267">Books &amp; Magazines</option>
 			<option value="178777">Baby &amp; Mom</option>
